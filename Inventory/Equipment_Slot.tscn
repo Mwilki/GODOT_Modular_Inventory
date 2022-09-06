@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Inventory/Equipment_Slot.gd" type="Script" id=1]
+[ext_resource path="res://Inventory/Inventory_Slot.tscn" type="PackedScene" id=2]
+
+[node name="Equipment_Slot" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+placeholder = NodePath("Placeholder")
+type = 0
+
+[node name="Placeholder" type="TextureRect" parent="." index="1"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2

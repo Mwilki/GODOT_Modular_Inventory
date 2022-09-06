@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Fonts/Arcadepix Plus.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/inner_panel.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/x_disabled.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/x_hover.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/x_normal.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/main panel.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/x_pressed.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/title.png" type="Texture" id=8]
+[ext_resource path="res://UI/Settings.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 1 )
+
+[node name="Settings" type="NinePatchRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -30.0
+margin_right = 72.0
+margin_bottom = 52.0
+mouse_filter = 1
+texture = ExtResource( 6 )
+region_rect = Rect2( 0.225784, 0.905672, 31.7676, 30.6081 )
+patch_margin_left = 10
+patch_margin_top = 9
+patch_margin_right = 10
+patch_margin_bottom = 9
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource( 9 )
+slider = NodePath("SettingList/Scale/HSlider")
+fullscreen_check = NodePath("SettingList/FullScreen/CheckBox")
+
+[node name="Title" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -40.0
+margin_top = -11.0
+margin_right = 40.0
+margin_bottom = 7.0
+mouse_filter = 1
+texture = ExtResource( 8 )
+patch_margin_left = 8
+patch_margin_top = 6
+patch_margin_right = 8
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="Title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 4.0
+custom_colors/font_color = Color( 0.254902, 0.392157, 0.392157, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Settings"
+align = 1
+valign = 1
+
+[node name="CloseButton" type="TextureButton" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -9.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 3 )
+
+[node name="SettingList" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 9.0
+margin_top = 10.0
+margin_right = -9.0
+margin_bottom = -5.0
+custom_constants/separation = 2
+
+[node name="Scale" type="NinePatchRect" parent="SettingList"]
+margin_right = 126.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+texture = ExtResource( 2 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="SettingList/Scale"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -59.0
+margin_top = 3.0
+margin_right = 59.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.352941, 0.176471, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "- Scale -"
+align = 1
+valign = 1
+
+[node name="HSlider" type="HSlider" parent="SettingList/Scale"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 9.0
+margin_top = -8.0
+margin_right = -9.0
+margin_bottom = 8.0
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[node name="FullScreen" type="NinePatchRect" parent="SettingList"]
+margin_top = 32.0
+margin_right = 126.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 0, 30 )
+texture = ExtResource( 2 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="SettingList/FullScreen"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -59.0
+margin_top = 3.0
+margin_right = 59.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.352941, 0.176471, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "- Fullscreen -"
+align = 1
+valign = 1
+
+[node name="CheckBox" type="CheckBox" parent="SettingList/FullScreen"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -12.0
+margin_top = -8.0
+margin_right = 12.0
+margin_bottom = 16.0
+
+[connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
+[connection signal="gui_input" from="SettingList/Scale/HSlider" to="." method="_on_HSlider_gui_input"]
+[connection signal="toggled" from="SettingList/FullScreen/CheckBox" to="." method="_on_CheckBox_toggled"]

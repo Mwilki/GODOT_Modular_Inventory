@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/Arcadepix Plus.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/inner_panel.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/title.png" type="Texture" id=3]
+[ext_resource path="res://Items/Item_Info.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 1 )
+
+[node name="Item_Info" type="NinePatchRect"]
+margin_left = -14.0
+margin_right = 54.0
+margin_bottom = 36.0
+texture = ExtResource( 2 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource( 4 )
+item_name = NodePath("Item_Name/Label")
+line_container = NodePath("Line_Container")
+
+[node name="Item_Name" type="NinePatchRect" parent="."]
+anchor_right = 1.0
+margin_left = 2.0
+margin_top = -14.0
+margin_right = -2.0
+margin_bottom = 2.0
+texture = ExtResource( 3 )
+patch_margin_left = 8
+patch_margin_top = 6
+patch_margin_right = 8
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="Item_Name"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 4.0
+custom_colors/font_color = Color( 0.254902, 0.392157, 0.392157, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Item Name"
+align = 1
+valign = 1
+
+[node name="Line_Container" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 5.0
+margin_right = -6.0
+margin_bottom = -5.0

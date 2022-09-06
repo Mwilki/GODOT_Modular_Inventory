@@ -1,0 +1,172 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Fonts/Arcadepix Plus.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/inner_panel.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/x_pressed.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/x_normal.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/main panel.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/x_hover.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/title.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/x_disabled.png" type="Texture" id=8]
+[ext_resource path="res://UI/Split_Stack.gd" type="Script" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 12
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Fonts/Arcadepix Plus.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = SubResource( 3 )
+
+[node name="Split_Stack" type="ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -150.0
+margin_right = 256.0
+margin_bottom = 150.0
+color = Color( 0, 0, 0, 0.486275 )
+script = ExtResource( 9 )
+quantity_slider = NodePath("Main_Panel/Scale/Quantity_Slider")
+original_quantity = NodePath("Main_Panel/Scale/Original_Quantity")
+new_quantity = NodePath("Main_Panel/Scale/New_Quantity")
+
+[node name="Main_Panel" type="NinePatchRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -72.0
+margin_top = -30.0
+margin_right = 72.0
+margin_bottom = 19.0
+mouse_filter = 1
+texture = ExtResource( 5 )
+region_rect = Rect2( 0.225784, 0.905672, 31.7676, 30.6081 )
+patch_margin_left = 10
+patch_margin_top = 9
+patch_margin_right = 10
+patch_margin_bottom = 9
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Title" type="NinePatchRect" parent="Main_Panel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -40.0
+margin_top = -11.0
+margin_right = 40.0
+margin_bottom = 7.0
+mouse_filter = 1
+texture = ExtResource( 7 )
+patch_margin_left = 8
+patch_margin_top = 6
+patch_margin_right = 8
+patch_margin_bottom = 2
+
+[node name="Label" type="Label" parent="Main_Panel/Title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 4.0
+custom_colors/font_color = Color( 0.254902, 0.392157, 0.392157, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Split Stack"
+align = 1
+valign = 1
+
+[node name="CloseButton" type="TextureButton" parent="Main_Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -9.0
+margin_bottom = 9.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 8 )
+
+[node name="Scale" type="NinePatchRect" parent="Main_Panel"]
+margin_left = 9.0
+margin_top = 10.0
+margin_right = 135.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 30 )
+texture = ExtResource( 2 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="Label" type="Label" parent="Main_Panel/Scale"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -59.0
+margin_top = 3.0
+margin_right = 59.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.352941, 0.176471, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "- Quantity -"
+align = 1
+valign = 1
+
+[node name="Original_Quantity" type="Label" parent="Main_Panel/Scale"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -53.0
+margin_top = 3.0
+margin_right = -27.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.352941, 0.176471, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "10"
+valign = 1
+
+[node name="New_Quantity" type="Label" parent="Main_Panel/Scale"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 26.0
+margin_top = 3.0
+margin_right = 53.0
+margin_bottom = 9.0
+custom_colors/font_color = Color( 0.352941, 0.176471, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "10"
+align = 2
+valign = 1
+
+[node name="Quantity_Slider" type="HSlider" parent="Main_Panel/Scale"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 9.0
+margin_top = -8.0
+margin_right = -9.0
+margin_bottom = 8.0
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+
+[node name="Button" type="Button" parent="Main_Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -22.5
+margin_top = -7.0
+margin_right = 22.5
+margin_bottom = 9.0
+custom_fonts/font = SubResource( 4 )
+text = "Split"
+
+[connection signal="pressed" from="Main_Panel/CloseButton" to="Main_Panel" method="_on_CloseButton_pressed"]
+[connection signal="gui_input" from="Main_Panel/Scale/Quantity_Slider" to="Main_Panel" method="_on_HSlider_gui_input"]

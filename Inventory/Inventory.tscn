@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Fonts/Arcadepix Plus.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Sprites/bar.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/inner_panel.png" type="Texture" id=3]
+[ext_resource path="res://Inventory/Inventory.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 1 )
+
+[node name="Inventory" type="NinePatchRect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -63.0
+margin_top = -1.14
+margin_right = 62.0
+margin_bottom = 38.86
+rect_min_size = Vector2( 0, 40 )
+texture = ExtResource( 3 )
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+script = ExtResource( 4 )
+title = NodePath("TextureRect/Label")
+slot_container = NodePath("Slot_Container")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -17.5
+margin_top = 10.0
+margin_right = 18.5
+margin_bottom = 12.0
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="TextureRect"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -60.0
+margin_top = -9.0
+margin_right = 58.0
+margin_bottom = -3.0
+custom_colors/font_color = Color( 0.352941, 0.176471, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "- Inventory Name -"
+align = 1
+valign = 1
+
+[node name="Slot_Container" type="GridContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 9.0
+margin_top = 14.0
+margin_right = -8.0
+margin_bottom = -21.0
+custom_constants/vseparation = 2
+custom_constants/hseparation = 3
+columns = 5
